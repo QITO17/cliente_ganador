@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selección de Fila</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet">
+
+</head>
+<body>
+  <div class="flex flex-col gap-20 items-center justify-center mx-auto h-screen">
+      <img class="h-[900px] rounded-lg" src="./ctm.png" alt="" />
+      <p class="font-bold text-3xl">PREMIA SU FIDELIDAD</p>
+    <button id="getDataBtn" class="px-4 bg-green-600 max-w-[500px] sm:mx-2 w-[500px] py-2.5 text-sm font-medium dark:text-gray-200 dark:border-gray-700 dark:hover:bg-green-800 tracking-wide text-gray-700 capitalize transition-colors duration-300 transform border border-gray-200 rounded-md hover:bg-green-400 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-40">Obtener Ganador</button>
+
+</div>
+  <div id="modal" style="display: none;" class="flex bg-blue-500  border-green-600">
+    
+  </div>
+
+  <script>
+    document.getElementById('getDataBtn').addEventListener('click', async () => {
+      try {
+        const response = await fetch('http://localhost:3000/api/excel-data');
+        const data = await response.json();
+        
+        const indiceAleatorio = Math.floor(Math.random() * data.length);
+        
+        // Mostrar la modal con los datos de la fila seleccionada
+        const modal = document.getElementById('modal');
+        modal.innerHTML = `
+          
+          
+          
+          <div x-data="{ isOpen: true }" class="relative flex justify-center">
+ 
+
+    <div x-show="isOpen"
+        x-transition:enter="transition duration-300 ease-out"
+        x-transition:enter-start="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
+        x-transition:enter-end="translate-y-0 opacity-100 sm:scale-100"
+        x-transition:leave="transition duration-150 ease-in"
+        x-transition:leave-start="translate-y-0 opacity-100 sm:scale-100"
+        x-transition:leave-end="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
+        class="fixed inset-0 z-10 overflow-y-auto" 
+        aria-labelledby="modal-title" role="dialog" aria-modal="true"
+    >
+        <div class="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+    
+            <div class="relative inline-block p-4 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl sm:max-w-sm rounded-xl dark:bg-gray-900 sm:my-8 sm:w-full sm:p-6">
+                <div class="flex items-center justify-center mx-auto">
+                    <img class="h-full rounded-lg" src="./felicidades.avif" alt="" />
+                </div>
+
+                <div class="mt-5 text-center">
+                    <h3 class="text-lg font-medium text-gray-800 dark:text-white" id="modal-title">
+                        <p>Nombre: ${data[indiceAleatorio].D}</p>
+                    </h3>
+
+                    <p class="mt-2 text-gray-500 dark:text-gray-400">
+                        <p>Dirección: ${data[indiceAleatorio].G}</p>
+                    </p>
+                    <p class="mt-2 text-gray-500 dark:text-gray-400">
+                        <p>Número: ${data[indiceAleatorio].E}</p>
+                    </p>
+                </div>
+
+
+                <div class="mt-4 sm:flex sm:items-center sm:justify-between sm:mt-6 sm:-mx-2">
+                
+
+                    <button class="px-4 sm:mx-2 w-full py-2.5 mt-3 sm:mt-0 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40">
+                        Aceptar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+          <!-- Agrega más campos según las columnas de tu archivo Excel -->
+        `;
+        modal.style.display = 'block';
+      } catch (error) {
+        console.error('Error al obtener los datos del servidor:', error);
+      }
+    });
+  </script>
+</body>
+</html>

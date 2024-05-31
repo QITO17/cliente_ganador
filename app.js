@@ -6,6 +6,7 @@ const path = require('path');
 const cors = require('cors')
 
 app.use(cors())
+const port = 5500
 
 // Endpoint para leer el archivo Excel
 app.get('/api/excel-data', (req, res) => {
@@ -19,4 +20,4 @@ app.get('/api/excel-data', (req, res) => {
   res.json(data);
 });
 
-app.listen(3000, () => console.log('Servidor corriendo en el puerto 3000'));
+app.listen(port, () => console.log(`Servidor corriendo en el puerto ${port}`));

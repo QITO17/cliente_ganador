@@ -21,7 +21,7 @@
   <script>
     document.getElementById('getDataBtn').addEventListener('click', async () => {
       try {
-        const response = await fetch('/api/excel-data');
+        const response = await fetch('https://fake-api-ochre.vercel.app/excel-data');
         const data = await response.json();
         
         const indiceAleatorio = Math.floor(Math.random() * data.length);

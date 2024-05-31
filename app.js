@@ -11,7 +11,7 @@ const port = 5500
 // Endpoint para leer el archivo Excel
 app.get('/api/excel-data', (req, res) => {
   const result = excelToJson({
-    sourceFile: path.join(__dirname, './d.xlsx') // Ruta al archivo Excel
+    sourceFile: path.join(__dirname, './d.xlsx') 
   });
 
   // Supongamos que la hoja de Excel se llama 'Sheet1'

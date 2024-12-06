@@ -9,9 +9,13 @@
 </head>
 <body>
   <div class="flex flex-col gap-20 items-center justify-center mx-auto h-screen">
-      <img class="h-[900px] rounded-lg" src="./ctm.png" alt="" />
-      <p class="font-bold text-3xl">Sorteo de Televisor de 55"</p>
-      <p class="font-bold text-3xl">Usuarios Estacionamiento Laureles</p>
+      <!-- <img class="h-[900px] rounded-lg" src="./ctm.png" alt="" /> -->
+      <div class=" w-[50px] h-[50px] ">
+        <img class=" h-full w-full rounded-lg" src="./aso.jfif" alt="" />
+      </div>
+
+      <p class="font-bold text-3xl">Sorteo de equivalente al cambio de aceite y un mes de Administración p $120.000</p>
+      <p class="font-bold text-3xl">Señor Asociado</p>
     <button id="getDataBtn" class="px-4 bg-green-600 max-w-[500px] sm:mx-2 w-[500px] py-2.5 text-sm font-medium dark:text-gray-200 dark:border-gray-700 dark:hover:bg-green-800 tracking-wide text-gray-700 capitalize transition-colors duration-300 transform border border-gray-200 rounded-md hover:bg-green-400 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-40">Obtener Ganador</button>
 
 </div>
@@ -25,6 +29,7 @@
         const response = await fetch('https://fake-api-ochre.vercel.app/excel-data');
         const data = await response.json();
         
+        console.log(data, ' HOLAAAAAAAAAAAAAAAAAAAAAAAAA ')
         const indiceAleatorio = Math.floor(Math.random() * data.length);
         
         // Mostrar la modal con los datos de la fila seleccionada
@@ -56,20 +61,20 @@
 
                 <div class="mt-5 text-center">
                     <h3 class="text-lg font-medium text-gray-800 dark:text-white" id="modal-title">
-                        <p>Nombre: ${data[indiceAleatorio].D}</p>
+                        <p>Nombre: ${data[indiceAleatorio].usuario}</p>
                     </h3>
 
                     <p class="mt-2 text-gray-500 dark:text-gray-400">
-                        <p>Placa: ${data[indiceAleatorio].G}</p>
+                        <p>Placa: ${data[indiceAleatorio].Placa}</p>
                     </p>
                     <p class="mt-2 text-gray-500 dark:text-gray-400">
-                        <p>Producto: ${data[indiceAleatorio].E}</p>
+                        <p>Producto: ${data[indiceAleatorio].telefono}</p>
                     </p>
                     <p class="mt-2 text-gray-500 dark:text-gray-400">
-                        <p>Cédula: ${data[indiceAleatorio].B}</p>
+                        <p>Cédula: ${data[indiceAleatorio].movil}</p>
                     </p>
                     <p class="mt-2 text-gray-500 dark:text-gray-400">
-                        <p>Fecha y hora compra: ${data[indiceAleatorio].H} ${data[indiceAleatorio].I}</p>
+                        <p>Fecha y hora compra: ${data[indiceAleatorio].barrio} ${data[indiceAleatorio].control}</p>
                     </p>
                 </div>
 
